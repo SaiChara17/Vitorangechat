@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orange Chat - Text</title>
+    
+</head>
+<body>
+    <style>
+
+/* Universal Box-Sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body Styling */
+body {
+    background-color: #121212;
+    font-family: Arial, sans-serif;
+    line-height: 1.5; /* Improves readability */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+/* Header Styling */
+.header {
+    background-color: black;
+    border-bottom: 1px solid whitesmoke;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    position: fixed; /* Keeps header fixed at the top */
+    top: 0;
+    z-index: 1000; /* Ensures it stays on top of other elements */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adds depth with a subtle shadow */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Branding */
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1; /* Allows the branding section to take up extra space if needed */
+    overflow: hidden; /* Ensures the content doesn't overflow */
+}
+
+/* Import Omegle Font */
+@font-face {
+    font-family: 'Omegle';
+    src: url('fonts/Omegle-Regular.ttf') format('truetype'); /* Adjust the font path if necessary */
+}
+
+/* Orange Text Styling */
+.Orange-text {
+    color: #ff4D00;
+    font-family: 'Omegle', Arial, sans-serif;
+    font-size: 4rem;
+    font-weight: normal;
+    margin: 0;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adds a soft shadow for a modern look */
+    white-space: nowrap; /* Prevents text wrapping */
+    overflow: hidden; /* Ensures text doesn't overflow */
+    text-overflow: ellipsis; /* Adds ellipsis for long text */
+    transition: color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Hover Effect for Header */
+.header:hover {
+    background-color: #1a1a1a; /* Slightly lighter background for hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .Orange-text {
+        font-size: 2.5rem; /* Adjust font size for smaller screens */
+    }
+
+    .header {
+        padding: 0 10px; /* Reduce padding for smaller screens */
+    }
+
+    .branding {
+        gap: 5px; /* Reduce gap for smaller screens */
+    }
+}
+
+
+/* Tilted header text */
+.tilted-header {
+    color: white;
+    font-size: 1.2rem;
+    transform: rotate(-10deg);
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* Navigation */
+.header-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.header-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav li a {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(7, 159, 253);
+    padding: 15px 20px;
+    margin: 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s;
+    margin-right: 10px;
+}
+
+.header-nav li a:hover {
+    background-color: deepskyblue;
+    transform: scale(1.1);
+}
+
+/* Online counter */
+.online-counter {
+    font-size: 1.5rem;
+    color: lightblue;
+    font-weight: bold;
+    display: flex;
+    align-items: center; /* Aligns the items vertically */
+    margin-left: auto; /* Pushes the counter to the right */
+}
+
+#online-users {
+    font-size: 2rem;
+    margin-right: 5px;
+}
+
+
+/* Main section */
+.main-section {
+    text-align: center;
+    margin-top: 100px; /* Add top margin to prevent overlap with the fixed header */
+}
+
+
+/* Chat Application Styles */
+.chat-app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.chat-app-container h2 {
+    color: #ff4d00;
+    text-align: center;
+}
+
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    
+    background-color: #2c2c2c;
+    
+    border-radius: 5px;
+}
+
+.message-container {
+    flex-grow: 1;
+    
+    overflow-y: auto;
+    background-color: #333;
+    border-radius: 5px;
+    height: 400px; /* Keeps chat height fixed */
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.chat-message {
+    padding: 12px 18px;
+    border-radius: 20px; /* Rounded corners */
+    font-size: 1rem;
+    max-width: 80%;
+    word-wrap: break-word;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.outgoing-message {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #ff4d00, #ff8000); /* Gradient for outgoing messages */
+    color: white;
+}
+
+.outgoing-message:hover {
+    transform: scale(1.05); /* Slight scale on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.incoming-message {
+    align-self: flex-start;
+    background: linear-gradient(135deg, #444, #666); /* Gradient for incoming messages */
+    color: white;
+}
+
+.incoming-message:hover {
+    transform: scale(1.05); /* Slight scale on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.chat-form {
+    display: flex;
+    gap: 15px;  /* Increased gap for more breathing space */
+    align-items: center;
+    padding: 10px;
+    background-color: #0f0606; /* Light background for a clean look */
+    border-radius: 30px;  /* Rounded corners for smoother design */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+
+
+.chat-form input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #272525;
+    border-radius: 20px; /* Rounded corners for input field */
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.chat-form input:focus {
+    border-color: #ff4d00; /* Highlight border on focus */
+}
+
+
+
+#message-input {
+    height: 70px;
+    width: 90%;
+    padding: 10px;
+    border: 1px solid rgb(131, 131, 131);
+    border-radius: 5px;
+    font-size: 1.3rem;
+}
+
+#send-button {
+    padding: 20px 20px;
+    background-color: #ff4d00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#send-button:hover {
+    background-color: #ff6b6b;
+}
+
+.connect-button {
+    padding: 20px 30px;
+    background-color: rgb(10, 189, 249);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.connect-button:hover {
+    background-color: #666;
+}
+
+    </style>
+
+<header class="header">
+    <div class="branding">
+        <h1 class="Orange-text">VITconnect</h1>
+        <h1 class="tilted-header">VIT’s Secret Hangout!</h1>
+        <h1 class="tilted-header">Where VIT Speaks Anonymously!</h1>
+        
+
+
+</header>
+
+    <!-- Chat Section -->
+    <main class="main-section">
+        <div class="chat-app-container">
+            <h2>Text Chat</h2>
+            <div class="chat-box">
+                <div id="messages" class="message-container">
+                    <!-- Chat messages will appear here -->
+                </div>
+
+                <form id="chat-form" class="chat-form">
+                    <button type="button" id="connect-button" class="connect-button">Connect</button>
+                    <div id="typing-indicator" style="display: none;">User is typing...</div>
+
+                    <input type="text" id="message-input" placeholder="Type your message here">
+
+                    <button id="send-button">Send</button>
+
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    
+
+    <script src="/socket.io/socket.io.js"></script>
+    
+
+</body>
+</html>
+

@@ -1,0 +1,171 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    background-color: #121212;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    background-color: black;
+    border: 1px solid whitesmoke;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    position: fixed; /* Keeps header fixed at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensures it stays on top of other elements */
+}
+
+/* Branding */
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    flex-grow: 1; /* Ensures branding takes up available space */
+}
+
+/* Import the Omegle font */
+@font-face {
+    font-family: 'Omegle';
+    src: url('fonts/Omegle-Regular.ttf') format('truetype'); /* Adjust the font path if necessary */
+}
+
+/* Orange text */
+.Orange-text {
+    color: #ff4D00;
+    font-family: 'Omegle', Arial, sans-serif;
+    font-size: 4rem;
+    font-weight: normal;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Tilted header text */
+.tilted-header {
+    color: white;
+    font-size: 1.5rem; /* Slightly larger for emphasis */
+    transform: rotate(-5deg);
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle and modern shadow */
+    margin: 0;
+    background: linear-gradient(90deg, #ff8a00, #e52e71); /* Vibrant gradient */
+    -webkit-background-clip: text; /* Makes the gradient text-only */
+    -webkit-text-fill-color: transparent; /* Ensures gradient effect */
+    font-family: 'Poppins', sans-serif; /* Modern font choice */
+    letter-spacing: 0.05em; /* Adds a sleek touch */
+}
+
+
+/* Navigation */
+.header-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.header-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav li a {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(7, 159, 253);
+    padding: 15px 20px;
+    margin: 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s;
+    margin-right: 10px;
+}
+
+.header-nav li a:hover {
+    background-color: deepskyblue;
+    transform: scale(1.1);
+}
+
+/* Online counter */
+.online-counter {
+    font-size: 1.5rem;
+    color: lightblue;
+    font-weight: bold;
+    display: flex;
+    align-items: center; /* Aligns the items vertically */
+    margin-left: auto; /* Pushes the counter to the right */
+}
+
+#online-users {
+    font-size: 2rem;
+    margin-right: 5px;
+}
+
+/* Main section */
+.main-section {
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    margin-top: 100px; /* Add top margin to prevent overlap with the fixed header */
+}
+
+.info-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 0 6px rgb(220, 220, 220);
+    display: flex;
+    flex-direction: column;
+}
+
+.info-container h2 {
+    font-size: 2rem;
+    color: #ff4D00;
+    margin-bottom: 20px;
+}
+
+.info-container p {
+    font-size: 1.1rem;
+    color: #acacac;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+
+
+
+/* Input container */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Input field */
+.input-container input {
+    width: 90%;
+    padding: 10px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+
+
+
+
+
+
