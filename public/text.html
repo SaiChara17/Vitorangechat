@@ -92,60 +92,6 @@ body {
 }
 
 
-/* Tilted header text */
-.tilted-header {
-    color: white;
-    font-size: 1.2rem;
-    transform: rotate(-10deg);
-    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
-    margin: 0;
-}
-
-/* Navigation */
-.header-nav {
-    display: flex;
-    gap: 15px;
-}
-
-.header-nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.header-nav li a {
-    text-decoration: none;
-    color: white;
-    background-color: rgb(7, 159, 253);
-    padding: 15px 20px;
-    margin: 10px;
-    border-radius: 25px;
-    font-weight: bold;
-    transition: transform 0.3s, background-color 0.3s;
-    margin-right: 10px;
-}
-
-.header-nav li a:hover {
-    background-color: deepskyblue;
-    transform: scale(1.1);
-}
-
-/* Online counter */
-.online-counter {
-    font-size: 1.5rem;
-    color: lightblue;
-    font-weight: bold;
-    display: flex;
-    align-items: center; /* Aligns the items vertically */
-    margin-left: auto; /* Pushes the counter to the right */
-}
-
-#online-users {
-    font-size: 2rem;
-    margin-right: 5px;
-}
-
 
 /* Main section */
 .main-section {
@@ -155,48 +101,43 @@ body {
 
 
 /* Chat Application Styles */
-.chat-app-container {
-    max-width: 800px;
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-    background-color: #1e1e1e;
-    color: white;
-}
-
 .chat-app-container h2 {
     color: #ff4d00;
     text-align: center;
+    margin: 0;
+    padding: 10px;
+    background-color: #121212;
+    border-bottom: 1px solid #444;
 }
 
+/* Chat Box */
 .chat-box {
     display: flex;
     flex-direction: column;
-    
+    flex-grow: 1;
     background-color: #2c2c2c;
-    
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .message-container {
     flex-grow: 1;
-    
     overflow-y: auto;
     background-color: #333;
-    border-radius: 5px;
-    height: 400px; /* Keeps chat height fixed */
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    
+    gap: 10px; /* Spacing between messages */
 }
 
+/* Messages */
 .chat-message {
     padding: 12px 18px;
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 10px;
     font-size: 1rem;
     max-width: 80%;
     word-wrap: break-word;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
