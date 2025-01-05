@@ -101,43 +101,46 @@ body {
 
 
 /* Chat Application Styles */
+.chat-app-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    background-color: #1e1e1e;
+    color: white;
+}
+
 .chat-app-container h2 {
     color: #ff4d00;
     text-align: center;
-    margin: 0;
-    padding: 10px;
-    background-color: #121212;
-    border-bottom: 1px solid #444;
 }
 
-/* Chat Box */
 .chat-box {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    
     background-color: #2c2c2c;
+    
     border-radius: 5px;
-    overflow: hidden;
 }
 
 .message-container {
-    flex-grow: 1;
-    overflow-y: auto;
+    width: 800px;
     background-color: #333;
-    padding: 10px;
+    border-radius: 5px;
+    height: 400px; /* Keeps chat height fixed */
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Spacing between messages */
+    
 }
 
-/* Messages */
 .chat-message {
     padding: 12px 18px;
-    border-radius: 10px;
+    border-radius: 10px; /* Rounded corners */
     font-size: 1rem;
     max-width: 80%;
     word-wrap: break-word;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
