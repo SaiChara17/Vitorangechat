@@ -125,7 +125,9 @@ body {
 }
 
 .message-container {
-    width: 800px;
+    flex-grow: 1;
+    
+    overflow-y: auto;
     background-color: #333;
     border-radius: 5px;
     height: 400px; /* Keeps chat height fixed */
@@ -248,8 +250,7 @@ body {
 
 .connect-button:hover {
     background-color: #666;
-}
-
+}    
     </style>
 
 <header class="header">
