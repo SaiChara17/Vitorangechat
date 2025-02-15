@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let socket = null; // Initialize Socket.IO connection
     let typingTimeout = null; // Timeout for hiding typing indicator
     let peerConnection = null; // WebRTC PeerConnection
-    let localStream = null; // Loc
-    // al media stream
+    let localStream = null; // Local media stream
 
     const iceServers = {
         iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] // STUN server for NAT traversal
@@ -84,19 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle "Connect" button click
     connectButton.addEventListener('click', () => {
         if (!socket) {
-            // Clear previous chat messages
-            messageContainer.innerHTML = '';
-            // Start local video stream
-            startLocalVideo();
-
-            // Connect to the server
+            messageContainer.innerHTML = ''; // Clear previous chat messages
+            startLocalVideo(); // Start local video stream
             socket = io(); // Initialize Socket.IO connection
             setupSocketListeners();
-
             connectButton.textContent = 'Disconnect';
             connectButton.style.backgroundColor = '#ff6b6b';
         } else {
-            // Disconnect from the server
             socket.disconnect();
             socket = null;
 
@@ -127,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (socket) {
-            console.log(`Sending message: ${message}`);
             socket.emit('chatMessage', message); // Emit the message to the server
             addMessage(message, 'outgoing'); // Add the message locally
             messageInput.value = ''; // Clear the input field
@@ -159,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         socket.on('chatMessage', (message) => {
-            console.log(`Received message: ${message}`);
             addMessage(message, 'incoming'); // Display incoming messages
         });
 
@@ -171,37 +162,28 @@ document.addEventListener('DOMContentLoaded', () => {
             addMessage('You are now connected to a user.', 'incoming', 'orange');
             connectButton.textContent = 'Disconnect';
             connectButton.style.backgroundColor = '#ff6b6b';
-        
-            // Start local video stream only after pairing
             await startLocalVideo();
-        
-            // Initialize PeerConnection and create offer
             initializePeerConnection();
             const offer = await peerConnection.createOffer();
             await peerConnection.setLocalDescription(offer);
             socket.emit('offer', offer);
         });
-        
 
         socket.on('offer', async (offer) => {
-            console.log('Received offer:', offer);
             initializePeerConnection();
             await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-
-            // Create and send an answer
             const answer = await peerConnection.createAnswer();
             await peerConnection.setLocalDescription(answer);
             socket.emit('answer', answer);
         });
 
         socket.on('answer', async (answer) => {
-            console.log('Received answer:', answer);
             await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
         });
 
         socket.on('iceCandidate', async (candidate) => {
-            console.log('Received ICE Candidate:', candidate);
             await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
         });
     }
 });
+
